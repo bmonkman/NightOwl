@@ -26,7 +26,7 @@ class AuthControllerTestCase extends AbstractControllerTestCase
     public function setUp()
     {
         $this->getRequest()->setMethod('GET');
-        $this->dispatch('/login/McBuppy/test');
+        $this->dispatch('/login/login/McBuppy/test');
         $json = json_decode($this->getResponse()->getBody());
         $this->key = $json->key;
         
