@@ -28,15 +28,8 @@ class LoginTest extends AbstractControllerTestCase
         $this->assertResponseStatusCode(200); 
     }
     
-    function testLogout()
-    {
-        $this->getRequest()->setMethod('GET');
-        $this->dispatch('/login/logout/McBuppy/test');
-        $json = json_decode($this->getResponse()->getBody());
-        $auth = new Auth();
-        $this->assertEquals($auth->auth($json->key), true);
-    }
-    
+
+
     function testInvalidLogin()
     {
         $this->getRequest()->setMethod('GET');
@@ -59,6 +52,16 @@ class LoginTest extends AbstractControllerTestCase
         $json = json_decode($this->getResponse()->getBody());
         $auth = new Auth();
         $this->assertEquals($auth->auth('fakekey'), false);
+    }
+    
+    function testLogout()
+    {
+        $this->getRequest()->setMethod('GET');
+        $this->dispatch('/login/login/McBuppy/test');
+        $json = json_decode($this->getResponse()->getBody());
+        
+        $this->dispatch('/login/logout/' . $json->key);
+        $this->assertEquals(json_decode($this->getResponse()->getBody())->status, true);
     }
     
 }

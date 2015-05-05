@@ -15,7 +15,7 @@ return array(
              'login' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/login[:/method][/:id][/:pw]',
+                     'route'    => '/login[/:method][/:id][/:pw]',
                      'defaults' => array(
                          'controller' => 'NightOwl\Controller\AuthRest',
                      ),
@@ -33,10 +33,10 @@ return array(
             'audit' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route' => '/audit[/:token][/:query]',
+                    'route' => '/audit[/:method][/:token][/:query]',
                     'defaults' => array(
                         'controller' => 'NightOwl\Controller\Audit',
-                    )
+                    ),
                 ),
             ),
          ),

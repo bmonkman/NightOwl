@@ -27,9 +27,9 @@ class Auth {
         $this->db = $m->$dbn;
     }
 
-    public function login($user, $pass)
+    public function login($user_, $pass)
     {
-        $user = array('user' => $user);
+        $user = array('user' => $user_);
 
         $userfound = $this->db->Auth->findOne($user);
 
@@ -37,15 +37,13 @@ class Auth {
         {
             return false;
         }
-
-        if($userfound['keyTTL'] < time(0))
-            $userfound['key'] = substr(sha1(time(0) . rand()), 20);
-        $userfound['keyTTL'] = time(0) + 60 * 60;   // One hour
-
-        $this->db->Auth->update($user, $userfound);
-
         if($userfound['pass'] === $pass)
         {
+            if($userfound['keyTTL'] < time(0))
+                $userfound['key'] = substr(sha1(time(0) . rand()), 20);
+            $userfound['keyTTL'] = time(0) + 60 * 60;   // One hour
+            $this->db->Auth->update($user, $userfound);
+            
             return $userfound['key'];
         }
         else
@@ -56,7 +54,7 @@ class Auth {
     
     public function logout($key)
     {
-        $user = $this->db->Auth->findOne();
+        $user = $this->db->Auth->findOne(array('key' => $key));
         
         if($user === null)
         {
@@ -64,9 +62,10 @@ class Auth {
         }
         else
         {
-            $user['keyTTL'] = time(0);
+            $user['keyTTL'] = 0;
             $user['key'] = '';
-            $this->db->Auth->update(array('key' => $key), $user);
+            
+            return $this->db->Auth->update(array('key' => $key), $user);
         }
     }
 
@@ -80,10 +79,14 @@ class Auth {
         if( $user['keyTTL'] < time(0) )
         {
             $user['key'] = '';
+            $user['keyTTL'] = 0;
+            
             $this->db->Auth->update($token, $user);
 
             return false;
         }
+        $user['keyTTL'] = time(0) + 60 * 60;
+        $this->db->Auth->update($token, $user);
 
         return true;
 
