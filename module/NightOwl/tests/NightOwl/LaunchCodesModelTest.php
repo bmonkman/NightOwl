@@ -15,21 +15,21 @@ class LaunchCodesModel extends AbstractControllerTestCase
     function testLogin()
     {
         $this->getRequest()->setMethod('GET');
-        $this->dispatch('/login/McBuppy/test');
+        $this->dispatch('/login/login/McBuppy/test');
         $this->assertResponseStatusCode(200);
     }
 
     function testInvalidLogin()
     {
         $this->getRequest()->setMethod('GET');
-        $this->dispatch('/login/McBuppy/wrongpass');
+        $this->dispatch('/login/login/McBuppy/wrongpass');
         $this->assertResponseStatusCode(401);
     }
 
     function testAuthValidate()
     {
         $this->getRequest()->setMethod('GET');
-        $this->dispatch('/login/McBuppy/test');
+        $this->dispatch('/login/login/McBuppy/test');
         $json = json_decode($this->getResponse()->getBody());
         $auth = new Auth();
         $this->assertEquals($auth->auth($json->key), true);
@@ -37,7 +37,7 @@ class LaunchCodesModel extends AbstractControllerTestCase
     function testInvalidAuthValidate()
     {
         $this->getRequest()->setMethod('GET');
-        $this->dispatch('/login/McBuppy/test');
+        $this->dispatch('/login/login/McBuppy/test');
         $json = json_decode($this->getResponse()->getBody());
         $auth = new Auth();
         $this->assertEquals($auth->auth('fakekey'), false);
