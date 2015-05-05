@@ -21,9 +21,22 @@ class AuthRestController extends AbstractRestfulController
     
     public function get($id)
     {
-        $user = $id;
-        $pass = $this->params('pw');
+        if($this->params('method') === 'login')
+        {
+            $user = $id;
+            $pass = $this->params('pw');
+            
+            return $this->login($user, $pass);
+        }
+        else if($this->params('method') === 'logout')
+        {
+            return $this->logout($id);
+        }
         
+    }
+    
+    private function login($user, $pass)
+    {
         if($key = $this->auth->login($user, $pass))
         {
             return new \Zend\View\Model\JsonModel(array('status' => true, 'key'=> $key));
@@ -32,6 +45,14 @@ class AuthRestController extends AbstractRestfulController
         {
             $this->response->setStatusCode(401);
             return new \Zend\View\Model\JsonModel(array('status' => false));
+        }
+    }
+    
+    private function logout($key)
+    {
+        if($this->auth->logout($key))
+        {
+            return new \Zend\View\Model\JsonModel(array('status' => true));
         }
     }
     

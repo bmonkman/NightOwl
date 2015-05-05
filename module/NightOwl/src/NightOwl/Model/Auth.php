@@ -50,8 +50,23 @@ class Auth {
         }
         else
         {
-
             return false;
+        }
+    }
+    
+    public function logout($key)
+    {
+        $user = $this->db->Auth->findOne();
+        
+        if($user === null)
+        {
+            return false;
+        }
+        else
+        {
+            $user['keyTTL'] = time(0);
+            $user['key'] = '';
+            $this->db->Auth->update(array('key' => $key), $user);
         }
     }
 
