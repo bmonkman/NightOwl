@@ -36,8 +36,8 @@ Configuration
 ```PHP
 return array(
     'mongo'    => array(
-        'url'  => 'mongodb://<user>:<pass>@<host>:<port>/<collection-name>',
-        'name' => '<collection-name>',
+        'url'  => 'mongodb://<user>:<pass>@<host>:<port>/<database-name>',
+        'name' => '<database-name>',
     ),
     'consul'   => array(
         'host'    => 'localhost',
