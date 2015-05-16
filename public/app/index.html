@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Le styles -->
-    <link href="/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/css/sidebar.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/css/style.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/css/jacked.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <link href="/app/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/app/css/sidebar.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/app/css/style.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/app/css/jacked.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/app/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
     <!-- Scripts -->
     <!--[if lt IE 9]><script type="text/javascript" src="/js/html5shiv.js"></script><![endif]-->
     <!--[if lt IE 9]><script type="text/javascript" src="/js/respond.min.js"></script><![endif]-->
@@ -38,7 +38,9 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
+            
             <ul class="sidebar-nav" style="list-style-type:none">
+                <li><img src="/app/img/logo-dark-bg.png" alt="Hootsuite Darklaunch Dashboard" id="logo"></li>
                 <li><a href="#" ng-class="{active : isSelected('list')}" ng-click="selectTab('list')">Codes</a></li>
                 <li><a href="#" ng-class="{active : selected === 'audit'}" ng-click="selectTab('audit')">History</a></li>
                 <li><a href="#" ng-click="logout()">Logout</a></li>
