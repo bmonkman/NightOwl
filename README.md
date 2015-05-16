@@ -94,7 +94,7 @@ interfaces.
 To setup apache, setup a virtual host to point to the public/ directory of the
 project and you should be ready to go! It should look something like below:
 
-**Note: ** Ensure that "AllowEncodedSlashes NoDecode" is set.
+**Note:** Ensure that "AllowEncodedSlashes NoDecode" is set.
 
     <VirtualHost *:80>
         AllowEncodedSlashes NoDecode
