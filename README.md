@@ -77,6 +77,8 @@ To run the Consul agent, enter this into your Terminal/Command Prompt:
 
     $ consul agent -server -bootstrap-expect 1 -data-dir <data-directory>
     
+*```<data-directory>``` should be an initially empty directory created for this purpose*
+    
 MongoDB Setup
 -------------
 For testing purposes, you can easily create a MongoDB at https://mongolab.com
@@ -122,30 +124,30 @@ cURL Tests
 All requests should return JSON data. If an empty JSON array is returned, add "-i" to the command to see the response headers. If a status of 401 is returned, the session has expired and you will need to login again.
 
 ### Create a Test User
-```curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://127.0.0.1/auth/create```
+    curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://127.0.0.1/auth/create
 
 ### Login as Test User
-```curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://127.0.0.1/auth/login```
+    curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://127.0.0.1/auth/login
 
 ### Create a Launch Code
-```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"true\"}" http://127.0.0.1/codes/dc1/test_key```
+    curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"true\"}" http://127.0.0.1/codes/dc1/test_key
 
 ### Retrieve the Launch Code
-```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://127.0.0.1/codes/dc1/test_key```
+    curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://127.0.0.1/codes/dc1/test_key
 
 ### Edit the Launch Code
-```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"false\"}" http://127.0.0.1/codes/dc1/test_key```
+    curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"false\"}" http://127.0.0.1/codes/dc1/test_key
 
 ### View History for the Launch Code
-```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://127.0.0.1/audit/%7B%22code%22:%7B%22$regex%22:%22test_key%22,%22$options%22:%22-i%22%7D%7D```
+    curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://127.0.0.1/audit/%7B%22code%22:%7B%22$regex%22:%22test_key%22,%22$options%22:%22-i%22%7D%7D
 
 ### Delete the Launch Code
-```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://127.0.0.1/codes/dc1/test_key```
+    curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://127.0.0.1/codes/dc1/test_key
 
 ### Logout
-```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://127.0.0.1/auth/logout```
+    curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://127.0.0.1/auth/logout
 
 ### Verify Logged Out
-```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://127.0.0.1/codes/dc1/test_key -i```
+    curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://127.0.0.1/codes/dc1/test_key -i
 
 (Response status will be 401 with message "Auth Token is Required"
