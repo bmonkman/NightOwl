@@ -1,6 +1,6 @@
 var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 
-	"API_URL":"http://nightowlAPI.local",
+	"API_URL":"http://nightowl.local",
 
 	"loadingID" : "#loading",
 
