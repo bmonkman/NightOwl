@@ -5,7 +5,7 @@ Introduction
 ------------
 An administration panel and server-side facade for Hootsuite's Dark Launch codes. You can use this admin panel to create and edit Dark Launch codes in various contexts and data centres. In addition, there is a history tab in which you can see all the changes made to the codes.
 
-**Note: ** Before logging in, you will need to create a user. See first test under **cURL Tests** for details on creating a user.
+**Note:** Before logging in, you will need to create a user. See first test under **cURL Tests** for details on creating a user.
 
 Required Software
 -----------------
