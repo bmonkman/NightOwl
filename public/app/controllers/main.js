@@ -136,7 +136,6 @@
             }else{
                 $scope.launchCodes = [];
             }
-            console.log($scope.launchCodes);
             $scope.selectTab("list");
         }
 
