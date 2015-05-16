@@ -98,7 +98,7 @@ project and you should be ready to go! It should look something like below:
 cURL Tests
 ----------
 
-**Note: ** These tests assume that the above setupu has been followed and that the address "http://nightowl.local" points to the public directory of the project.
+**Note:** These tests assume that the above setupu has been followed and that the address "http://nightowl.local" points to the public directory of the project.
 
 All requests should return JSON data. If an empty JSON array is returned, add "-i" to the command to see the response headers. If a status of 401 is returned, the session has expired and you will need to login again.
 
