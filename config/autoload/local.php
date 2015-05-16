@@ -13,7 +13,7 @@
 
 return array(
     'mongo'       => array(
-        'url'   => 'mongodb://nightowl:N0L4mm45!@ds031792.mongolab.com:31792/nightowl',
+        'url'   => 'mongodb://<user>:<pass>@<host>:<port>/nightowl',
         'name'  => 'nightowl',
     ),
     'consul'   => array(
