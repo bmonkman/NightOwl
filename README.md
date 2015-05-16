@@ -5,6 +5,8 @@ Introduction
 ------------
 An administration panel and server-side facade for Hootsuite's Dark Launch codes. You can use this admin panel to create and edit Dark Launch codes in various contexts and data centres. In addition, there is a history tab in which you can see all the changes made to the codes.
 
+**Note: ** Before logging in, you will need to create a user. See first test under **cURL Tests** for details on creating a user.
+
 Required Software
 -----------------
 - Consul
@@ -93,7 +95,7 @@ project and you should be ready to go! It should look something like below:
         </Directory>
     </VirtualHost>
 
-CURL Tests
+cURL Tests
 ----------
 
 **Note: ** These tests assume that the above setupu has been followed and that the address "http://nightowl.local" points to the public directory of the project.
@@ -101,29 +103,29 @@ CURL Tests
 All requests should return JSON data. If an empty JSON array is returned, add "-i" to the command to see the response headers. If a status of 401 is returned, the session has expired and you will need to login again.
 
 ### Create a Test User
-curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://nightowl.local/auth/create
+```curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://nightowl.local/auth/create```
 
 ### Login as Test User
-curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://nightowl.local/auth/login
+```curl -H "Content-type: application/json" -c cookies.txt -X POST -d "{\"name\":\"test_user\", \"pass\":\"password\"}" http://nightowl.local/auth/login```
 
 ### Create a Launch Code
-curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"true\"}" http://nightowl.local/codes/dc1/test_key
+```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"true\"}" http://nightowl.local/codes/dc1/test_key```
 
 ### Retrieve the Launch Code
-curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://nightowl.local/codes/dc1/test_key
+```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://nightowl.local/codes/dc1/test_key```
 
 ### Edit the Launch Code
-curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"false\"}" http://nightowl.local/codes/dc1/test_key
+```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X POST -d "{\"restriction\":\"boolean\", \"value\":\"true\", \"description\":\"test code\", \"availableToJS\":\"false\"}" http://nightowl.local/codes/dc1/test_key```
 
 ### View History for the Launch Code
-curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://nightowl.local/audit/%7B%22code%22:%7B%22$regex%22:%22test_key%22,%22$options%22:%22-i%22%7D%7D
+```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://nightowl.local/audit/%7B%22code%22:%7B%22$regex%22:%22test_key%22,%22$options%22:%22-i%22%7D%7D```
 
 ### Delete the Launch Code
-curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://nightowl.local/codes/dc1/test_key
+```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://nightowl.local/codes/dc1/test_key```
 
 ### Logout
-curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://nightowl.local/auth/logout
+```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X DELETE http://nightowl.local/auth/logout```
 
 ### Verify Logged Out
-curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://nightowl.local/codes/dc1/test_key -i
+```curl -H "Content-type: application/json" -c cookies.txt -b cookies.txt -X GET http://nightowl.local/codes/dc1/test_key -i```
 (Response status will be 401 with message "Auth Token is Required"
