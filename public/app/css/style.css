@@ -15,6 +15,7 @@
   background-color: #00aeef;
   color: white;
   font-size: 150%;
+  z-index: 3;
 }
 
 div.wrap{
@@ -75,4 +76,10 @@ a.active {
 a.active{
   background-color: #00aeef;
   color:white !important ;
+}
+
+#sidebar-wrapper #logo{
+  width: 100%;
+  position: relative;
+  left: -20px;
 }
