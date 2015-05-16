@@ -54,6 +54,14 @@ app.controller('ListController', function($scope, loading, codes) {
             }
 		}
 
+        $scope.createCode = function(code){
+            console.log("hello");
+            $scope.saveCode(code)
+            code = {}; 
+            $scope.resetFilters();
+            $scope.createMode = false;
+        }
+
 
 
 
