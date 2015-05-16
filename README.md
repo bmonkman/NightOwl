@@ -81,7 +81,7 @@ MongoDB Setup
 -------------
 For testing purposes, you can easily create a MongoDB at https://mongolab.com
 
-All Collections will be created automatically as they are required.
+For ease of setup, you may name your database "nightowl". All Collections will be created automatically as they are required.
 
 Web Server Setup
 ----------------
