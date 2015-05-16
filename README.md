@@ -4,6 +4,11 @@ NightOwl
 Table Of Contents
 -----------------
 [Introduction](#introduction)
+[Required Software](#required-software)
+[Configuration](#configuration)
+[Consul Agent Setup](#consul-agent-setup)
+[Web Server Setup](#web-server-setup)
+[cUrl Tests](#curl-tests)
 
 Introduction
 ------------
