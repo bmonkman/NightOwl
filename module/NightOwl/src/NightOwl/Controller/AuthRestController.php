@@ -12,30 +12,51 @@ use NightOwl\Model\Auth;
 
 class AuthRestController extends AbstractRestfulController
 {
+    /**
+     *
+     * @var Auth
+     */
     protected $auth;
 
     public function __construct()
     {
-        //parent::__construct();
         $this->auth = new Auth();
     }
-
+    
+    /**
+     * this doesn't do anything but for legacy reasons it returns something
+     * 
+     * @date May, 13 2015
+     * 
+     * @param type $id
+     * @return JsonModel
+     */
     public function get($id)
     {
-
-        {
-            $this->response->setStatusCode(401);
-            return new \Zend\View\Model\JsonModel(array('status' => false));
-        }
-    }
-
-    public function getList()
-    {
-        return new \Zend\View\Model\JsonModel(array('status' => false));
+        $this->response->setStatusCode(401);
+        return new \Zend\View\Model\JsonModel();
     }
 
     /**
-     *
+     * this doesn't do anything but for legacy reasons it returns something
+     * 
+     * @date May, 13 2015
+     * 
+     * @param type $id
+     * @return JsonModel
+     */
+    public function getList()
+    {
+        $this->response->setStatusCode(401);
+        return new \Zend\View\Model\JsonModel();
+    }
+
+    /**
+     * This function has two main paths depending on selected method.
+     * if 'create' is selected in the URL, it parses the data and attempts to create
+     * an account using the $this->createUser(); if 'login' is called it attempts to
+     * login and create a cookie by calling $this->login.
+     * 
      * @param type $data
      * @return JsonModel
      */
@@ -52,6 +73,15 @@ class AuthRestController extends AbstractRestfulController
         }
     }
 
+    /**
+     * this is a helper function to create a user. on failure it return a 409 status.
+     * on success it returns 200.
+     * 
+     * @date May 13, 2015
+     * 
+     * @param type $data data pased by post.
+     * @return JsonModel success or failure (not overly useful validated of the status.)
+     */
     protected function createUser($data)
     {
         $name = $data['name'];
@@ -72,6 +102,15 @@ class AuthRestController extends AbstractRestfulController
         }
     }
 
+    /**
+     * Authentificates the username and password using the Auth model.
+     * if the username is invalid returns 401.
+     * 
+     * @date May, 13 2015
+     * 
+     * @param type $data
+     * @return JsonModel
+     */
     protected function login($data)
     {
         if(!isset($data['name']) || !isset($data['pass']))
@@ -103,6 +142,11 @@ class AuthRestController extends AbstractRestfulController
 
     }
 
+    /**
+     * Logs the user out.
+     * 
+     * @return JsonModel
+     */
     public function deleteList()
     {
         if($this->params('method') === 'logout')

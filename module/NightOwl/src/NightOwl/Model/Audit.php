@@ -9,9 +9,18 @@
 namespace NightOwl\Model;
 
 use NightOwl\Model\Auth;
-use MongoClient;
-use DateTime;
 
+/**
+ * This is a model that can be used with the Audit collection in a mongoDB.
+ * 
+ * detailed parameters list of collection:
+ * owner   - this is the user that edited the code.
+ * code    - the DL code being changed.
+ * time    - the time that the DLCode was changed.
+ * message - the message about the change. This is set specficily by the
+ *           entity that created it, this is intended to be a description of
+ *           the change.
+ */
 class Audit extends BaseModel
 {
     /**
@@ -51,7 +60,10 @@ class Audit extends BaseModel
 
 
     /**
-     *
+     * This method creates a Audit Log. The log has an associated message and code
+     * which is assigned by the caller. there is a time and owner that are set based
+     * on the session and current time.
+     * 
      * @author Marc Vouve
      *
      * @date   May 3, 2015
@@ -59,9 +71,11 @@ class Audit extends BaseModel
      * @param type $message The message to set in mongo.
      * @param type $code    The launch code that is being changed.
      * @return boolean      based in the mongo insertion's okay status.
+     * 
      */
     public function LogEdit($message, $code)
     {
+        // creates an new Authentification model (to get the current user).
         $auth = new Auth();
         $data = array('owner'   => $auth->getCurrentUser(),
                       'code'    => $code,

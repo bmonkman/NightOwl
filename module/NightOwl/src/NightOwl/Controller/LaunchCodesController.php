@@ -2,6 +2,8 @@
 namespace NightOwl\Controller;
 
 use Zend\Mvc\Controller\AbstractRestfulController;
+use Zend\View\Model\JsonModel;
+
 use NightOwl\Model\LaunchCodesModel;
 use NightOwl\Model\Auth;
 
@@ -22,7 +24,7 @@ use NightOwl\Model\Auth;
 *            "value"        : "___",
 *            "description"   : "___",
 *            "availableToJS" : "true/false",
-*                      "owner"         : "___",             {if not set, current user is used}
+*            "owner"         : "___",             {if not set, current user is used}
 *          }
 *
 *    DELETE:
@@ -106,7 +108,7 @@ class LaunchCodesController extends AbstractRestfulController
         }
 
         // Return the results as a JSON string.
-        return new \Zend\View\Model\JsonModel(array('codes'=> $codes));
+        return new JsonModel(array('codes'=> $codes));
     }
 
     /**
@@ -187,7 +189,7 @@ class LaunchCodesController extends AbstractRestfulController
             return new \Zend\View\Model\JsonModel(array('status' => true));
         }
 
-        return new \Zend\View\Model\JsonModel(array('status' => false));
+        return new JsonModel(array('status' => false));
     }
 
     /*
@@ -224,10 +226,10 @@ class LaunchCodesController extends AbstractRestfulController
         $codeProvider = new LaunchCodesModel();
         if ($codeProvider->deleteLaunchCode($dc, $key))
         {
-            return new \Zend\View\Model\JsonModel(array('status' => true));
+            return new JsonModel(array('status' => true));
         }
 
-        return new \Zend\View\Model\JsonModel(array('status' => false));
+        return new JsonModel(array('status' => false));
     }
 
     /**
@@ -256,7 +258,7 @@ class LaunchCodesController extends AbstractRestfulController
         // If invalid (or missing) Auth Token, return error.
         $this->response->setStatusCode(self::RETURN_STATUS_AUTH_INVALID);
         $this->response->setReasonPhrase('Auth Token is Required.');
-        return new \Zend\View\Model\JsonModel();
+        return new JsonModel();
     }
 
     /**
@@ -271,7 +273,7 @@ class LaunchCodesController extends AbstractRestfulController
     {
         $this->response->setStatusCode(self::RETURN_STATUS_INVALID_ARGUMENTS);
         $this->response->setReasonPhrase("Missing Required Parameters.");
-        return new \Zend\View\Model\JsonModel();
+        return new JsonModel();
     }
 
     /**

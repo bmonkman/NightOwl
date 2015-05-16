@@ -8,14 +8,12 @@
 
 namespace NightOwl\Model;
 
-use Zend\Authentication\AuthenticationService;
 use Zend\Session\SessionManager;
 use Zend\Session\Container;
-use MongoClient;
 
 
 /**
- * Auth abstracts OAuth to interface with MongoDB
+ * A very basic implementation of an authentification controller.
  *
  * @author Marc
  */
@@ -36,7 +34,7 @@ class Auth extends BaseModel implements LoginModelInterface{
      * @const The TTL of the session. NOTE: this is only actually accounted for
      * server side. the cookie may not provide acurate info.
      */
-    const SESSION_LENGTH = 3600; // 60 minutes~
+    const SESSION_LENGTH = 3600; // 60 minutes~ (this is updated when auth is called.)
 
     const SESSION_NAME = 'nightowl_auth';
 
