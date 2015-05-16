@@ -11,6 +11,8 @@ Table Of Contents
 
 -[Consul Agent Setup](#consul-agent-setup)
 
+-[MongoDB Setup](#mongodb-setup)
+
 -[Web Server Setup](#web-server-setup)
 
 -[cUrl Tests](#curl-tests)
@@ -26,7 +28,7 @@ Required Software
 - Consul
 - PHP
 - MongoDB
-- MongoDB PHP Driver
+- MongoDB PHP Driver (http://docs.mongodb.org/ecosystem/drivers/php/)
 
 Configuration
 -------------
@@ -74,6 +76,12 @@ Unzip the package and copy the Consul binary to somewhere on the PATH so that it
 To run the Consul agent, enter this into your Terminal/Command Prompt:
 
     $ consul agent -server -bootstrap-expect 1 -data-dir <data-directory>
+    
+MongoDB Setup
+-------------
+For testing purposes, you can easily create a MongoDB at https://mongolab.com
+
+All Collections will be created automatically as they are required.
 
 Web Server Setup
 ----------------
