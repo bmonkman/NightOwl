@@ -62,10 +62,6 @@ app.controller('ListController', function($scope, loading, codes) {
             $scope.createMode = false;
         }
 
-
-
-
-
 		$scope.discardChanges = function(index){
 			$scope.loadCodes();
 			$scope.editModeOff(index);

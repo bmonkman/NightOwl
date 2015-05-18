@@ -1,14 +1,34 @@
+/*
+ * NightOwl is a front-end dashboard for a RESTful facade to
+ * a consul key/value store meant to be used for Dark Launch 
+ * code administration by Hootsuite.
+ * 
+ * Authors: The Escape Characters
+ * 		Nav Bhatti
+ * 		Casey Hammond
+ * 		Calvin Rempel
+ *		Marc Vouve
+ *
+ * Date: May 15th, 2015
+ *
+ */
+
+// Define the module and declare the config as a constant
 var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 
+	// URL of the consul REST api
 	"API_URL":"http://127.0.0.1",
 
+	// id of the loading status indicator
 	"loadingID" : "#loading",
 
+	// Installation Type (staging vs production)
 	"installation": {
 		"name" : "production",
 		"colour" : "red"
 	},
 
+	// List of restrictions. TODO: merge this with the metadata object
 	"restrictions" : [
 		"boolean",
 		"member_list",
@@ -16,6 +36,7 @@ var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 		"percent"
 	],
 
+	// List of possible code filters
 	"filters" : [
 		"All",
 		"Key",
@@ -26,6 +47,7 @@ var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 	],
 
 
+	// Default filters that will be used on load
 	"defaultFilters" : {
 		"prefix" : "darklaunch",
 		"dataCenter" : "dc1",
@@ -33,6 +55,7 @@ var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 		"filter" : ""
 	},
 
+	// Metadata object, used to configure the restriction value inputs for code creation and editing
 	"metadata" : {
 		"restrictions":{
 			"boolean":{"type":"select", "values":["true","false"]},
@@ -42,10 +65,16 @@ var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 		}
 	},
 
+	// Possible Data Center contexts
 	"dataCenters": [
 		{
-			"name": "Data Center 1", 
+			// Nicename of the datacenter
+			"name": "Data Center 1",
+
+			// Value sent in the REST api URL
 			"value" : "dc1",
+
+			// Available Prefixes in the datacenter
 			"prefixes":{ 
 				"darklaunch" : {
 					"dashboard": {
@@ -76,8 +105,7 @@ var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 		{"name": "Data Center 3", "value" : "dc3"}
 	],
 
-	"tokenName": "NightOwlAuth",
-
+	// Possible filters for the audit list
 	"auditFilters" : [
         "Last 24 Hours",
         "All",
