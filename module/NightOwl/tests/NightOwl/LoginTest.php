@@ -17,6 +17,8 @@ use Zend\Stdlib\Parameters;
  */
 class LoginTest extends AbstractControllerTestCase
 {
+    const CORRECT_NAME = 'dave';
+    const CORRECT_PASS = 'test';
     public function setUp()
     {
         $this->setApplicationConfig(include '../../../config/application.config.php');
@@ -26,7 +28,7 @@ class LoginTest extends AbstractControllerTestCase
     {
         
         $this->getRequest()->setMethod('POST')
-                ->setPost(new Parameters(array('name' => 'dave', 'pass' => 'test')));
+                ->setPost(new Parameters(array('name' => self::CORRECT_NAME, 'pass' => self::CORRECT_PASS)));
         $this->dispatch('/auth/login');
         $this->assertResponseStatusCode(201); 
         
@@ -36,7 +38,7 @@ class LoginTest extends AbstractControllerTestCase
     function testInvalidLogin()
     {
         $this->getRequest()->setMethod('POST')
-                ->setPost(new Parameters(array('name' => 'asdf', 'pass' => 'test')));
+                ->setPost(new Parameters(array('name' => self::CORRECT_NAME, 'pass' => self::CORRECT_PASS)));
         $this->dispatch('/auth/login');
         $this->assertResponseStatusCode(401); 
     }
@@ -44,7 +46,7 @@ class LoginTest extends AbstractControllerTestCase
     function testAuthValidate()
     {
         $this->getRequest()->setMethod('POST')
-                ->setPost(new Parameters(array('name' => 'dave', 'pass' => 'test')));
+                ->setPost(new Parameters(array('name' => self::CORRECT_NAME, 'pass' => self::CORRECT_PASS)));
         $this->dispatch('/auth/login');
         $auth = new Auth();
         $this->assertEquals($auth->auth(), true);
@@ -53,7 +55,7 @@ class LoginTest extends AbstractControllerTestCase
     function testLogout()
     {
         $this->getRequest()->setMethod('POST')
-                ->setPost(new Parameters(array('name' => 'dave', 'pass' => 'test')));
+                ->setPost(new Parameters(array('name' => self::CORRECT_NAME, 'pass' => self::CORRECT_PASS)));
         $this->dispatch('/auth/login');
         $json = json_decode($this->getResponse()->getBody());
         $auth = new Auth();
@@ -67,7 +69,7 @@ class LoginTest extends AbstractControllerTestCase
     function testInvalidAuthValidate()
     {
         $this->getRequest()->setMethod('POST')
-                ->setPost(new Parameters(array('name' => 'dave', 'pass' => 'asdf')));
+                ->setPost(new Parameters(array('name' => self::CORRECT_NAME, 'pass' => 'asdf')));
         $this->dispatch('/auth/login');
         $json = json_decode($this->getResponse()->getBody());
         $auth = new Auth();
