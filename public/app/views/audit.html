@@ -1,4 +1,5 @@
 <div class="row" ng-controller="AuditController">
+    <!-- Filter options -->
     <form id="audit" style="clear:both">
         <select id="searchOption" ng-model="auditFilters.filterBy" ng-options="auditFilter for auditFilter in config.auditFilters">
         </select>
@@ -8,6 +9,7 @@
         <input input class="btn btn-success" type="submit" value="filter" ng-click="filterAudits()">
     </form>
     <br/>
+    <!-- List of audits -->
     <div class="data" ng-show="auditList.length">
         <div class="row">
             <div class="col-md-2">

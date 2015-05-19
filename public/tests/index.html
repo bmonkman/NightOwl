@@ -9,13 +9,33 @@
     <script data-require="jasmine" data-semver="2.0.0" src="https://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
     <script data-require="jasmine" data-semver="2.0.0" src="https://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
     <script data-require="jasmine@*" data-semver="2.0.0" src="https://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
-    <script data-require="angular.js" data-semver="1.2.16" src="https://code.angularjs.org/1.2.16/angular.js"></script>
+    <script type="text/javascript" src="../app/lib/angular.min.js"></script>
     <script data-require="angular-mocks" data-semver="1.2.16" src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <script src="../public/app/scripts/app.js"></script>
-    <script src="appSpec.js"></script>
     <script src="jasmineBootstrap.js"></script>
     <!-- bootstraps Jasmine -->
+
+    <!-- Javascript Libraries -->
+    <script type="text/javascript" src="../app/lib/jquery-2.1.3.js"></script>
+    <script type="text/javascript" src="../app/lib/bootstrap.min.js"></script>
+
+    <!-- Config File -->
+    <script type="text/javascript" src="../app/config.js"></script>
+
+    <!-- Services -->
+    <script type="text/javascript" src="../app/services/loading.js"></script>
+    <script type="text/javascript" src="../app/services/auth.js"></script>
+    <script type="text/javascript" src="../app/services/codes.js"></script>
+    <script type="text/javascript" src="../app/services/audits.js"></script>
+
+    <!-- Controllers -->
+    <script type="text/javascript" src="../app/controllers/main.js"></script>
+    <script type="text/javascript" src="../app/controllers/login.js"></script>
+    <script type="text/javascript" src="../app/controllers/list.js"></script>
+    <script type="text/javascript" src="../app/controllers/audit.js"></script>
+
+    <script src="appSpec.js"></script>
+    
   </head>
 
   <body>

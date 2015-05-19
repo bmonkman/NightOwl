@@ -1,11 +1,12 @@
 <div ng-controller="ListController">
-
+	<!-- Data Center selection -->
 	<div id="dataCenters" class="row" >
 		<div class="col-md-12 btn-group">
 			<button ng-repeat="dc in config.dataCenters" class="btn" ng-class="filters.dataCenter == dc.value ? 'btn-secondary' : 'btn-primary'" ng-click="setDataCenter(dc)">{{dc.name}}</button>
 		</div>
 	</div>
 	<hr>
+	<!-- Prefix Selection -->
 	<div class="row">
 		<div class="col-md-12">
 			<h3>Prefix:</h3>
@@ -15,6 +16,7 @@
 		</div>
 	</div>
 	<hr>
+	<!-- Filter parameters -->
 	<form id="filter" class="row">
 		<div class="row">
 			<div class="col-md-12">
@@ -39,6 +41,7 @@
 		</div>
 	</form>
 	<hr>
+	<!-- Creation Form -->
 	<div id="create" class="row">
 		<div class="col-md-1" ng-hide="createMode">
 			<button class="btn btn-primary" ng-click="createMode = true">Create New</button>
@@ -88,6 +91,7 @@
 		</div>
 	</div>
 	<hr>
+	<!-- List of Launch Codes -->
 	<div ng-show="launchCodes.length">
 		<div class="row" ng-model="sort">
 			<div class="col-md-2"><select ng-model="sort.type" ng-options="key for key in sort.keys"></select></div>
