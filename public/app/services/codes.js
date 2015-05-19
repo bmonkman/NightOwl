@@ -2,8 +2,6 @@
  * Service to be used by controllers to interact with the api to retreive
  * the list of Dark Launch Codes with the given filters applied. Contains logic to 
  * construct the endpoints to the api. This service returns the $http promise object
- * the other services in this project should be changed to do the same to keep
- * a more consistant impleentation
  *
  * Endpoints are constructed using a filter object:
  *		{

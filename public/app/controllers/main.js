@@ -75,7 +75,7 @@
             })
             .error(function(data, status){
                 // If the user's session has expired, reload the application
-                if(status == 401 && $scope.selected !== "login") // HACK to prevent reload when on the login page
+                if(status == 401 && $scope.selected !== "login")
                     location.reload();
             })
             .finally(function(){
@@ -92,7 +92,8 @@
                 } 
                 // If the user's session has expired, reload the applcation
                 else if( data === 401 ){
-                    if ($scope.selected !== 'login')// HACK to prevent reload when on the login page
+                    // Prevent reload when on the login page
+                    if ($scope.selected !== 'login')
                         location.reload();
                 }
             });
@@ -120,10 +121,8 @@
                             // If not moving to the login page, show the sidebar
                             $("#wrapper").removeClass("toggled");
                         }if( val == "audit" ){
-                            // If moving to the audit page, load the audits
                             $scope.loadAudits();
-                        }if( val == "list" && $scope.selected != "login" ){ // HACK to prevent two requests on application load
-                            // If moving to the list page, load the codes
+                        }if( val == "list" && $scope.selected != "login" ){ // Prevent two requests on application load
                             $scope.loadCodes();
                         }
                         // Set the selected view to the new view

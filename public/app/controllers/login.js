@@ -5,7 +5,10 @@
  *  scope, $http: angular services
  *  auth: authentication service
  *
- * Author: Nav Bhatti
+ * Authors: 
+ *    Nav Bhatti
+ *    Casey Hammond
+ *
  * Date: May 15th, 2015 
  */
 

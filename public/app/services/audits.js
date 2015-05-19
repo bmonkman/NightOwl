@@ -9,7 +9,6 @@
  *
  * Date: May 15th, 2015
  *
- * TODO: configure service to return $http promise object
  */
 
 (function(){

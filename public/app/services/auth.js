@@ -4,7 +4,6 @@
  * Author: Nav Bhatti
  * Date: May 15th, 2015
  *
- * TODO: configure service to return $http promise object
  */
 (function(){
 	app.factory('auth', function($http, API_CONFIG, loading){
