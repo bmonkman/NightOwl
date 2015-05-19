@@ -16,7 +16,7 @@
 // Define the module and declare the config as a constant
 var  app = angular.module('NightOwl', []).constant( 'API_CONFIG',{
 
-	// URL of the consul REST api
+	// URL of the NightOwl REST api
 	"API_URL":"http://127.0.0.1",
 
 	// id of the loading status indicator
