@@ -134,4 +134,70 @@ describe('Night Owl', function() {
 
   });
 
+  describe('The Audit Controller', function() {
+    var $scope, controller, $http, urlTest;
+      var url = config.API_URL + '/audit/';
+
+    beforeEach(function() {
+        $scope = {};
+        urlTest = '';
+        controller = $controller('AuditController', { $scope: $scope });
+    });
+
+      it('should filter audits by last 24 hours on default', function(){
+          expect($scope.filterBy).toEqual('Last 24 Hours');
+      });
+
+      it('should filter audits by owner', function() {
+          $scope.filterBy = 'Owner';
+          $scope.filter = 'test';
+          urlTest = url + '{"' + $scope.filterBy + '":{"$regex":"' + $scope.filter + '","$options":"-i"}}';
+          expect($http.get(url)).toBeTruthy();
+      });
+      it('should filter audits by code', function() {
+          $scope.filterBy = 'Code';
+          $scope.filter = 'test';
+          urlTest = url + '{"'+ $scope.filterBy +'":{"$regex":"' + $scope.filter + '","$options":"-i"}}';
+          expect($http.get(url)).toBeTruthy();
+      });
+      it('should filter audits by message', function() {
+          $scope.filterBy = 'Message';
+          $scope.filter = 'test';
+          urlTest = url + '{"' + $scope.filterBy + '":{"$regex":"' + $scope.filter + '","$options":"-i"}}';
+          expect($http.get(url)).toBeTruthy();
+      });
+      it('should filter audits by all', function() {
+          $scope.filterBy = 'All';
+          $scope.filter = 'test';
+          urlTest = url + '{"$or":[{"owner":{"$regex":"' + $scope.filter + '","$options":"-i"}},{"code":{"$regex":"' + $scope.filter + '","$options":"-i"}},{"message":{"$regex":"' + $scope.filter + '","$options":"-i"}}]}';
+          expect($http.get(url)).toBeTruthy();
+      });
+
+  });
+
+    describe('The Login Controller', function() {
+        var $scope, controller;
+
+        beforeEach(function() {
+            $scope = {};
+            controller = $controller('LoginController', { $scope: $scope });
+        });
+
+        it('should login and move to list page', function(){
+            $scope.login('dave','test');
+            expect($scope.selected).toEqual('list');
+        });
+
+        it('should fail login and stay on login page', function(){
+            $scope.login('dude','test');
+            expect($scope.selected).toEqual('login');
+        });
+
+        it('should fail login and move to login page', function(){
+            $scope.logout();
+            expect($scope.selected).toEqual('login');
+        });
+
+    });
+
 });
