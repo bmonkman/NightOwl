@@ -3,7 +3,7 @@ composer.phar
 vendor/
 
 # Local configs
-config/autoload/*.local.php
+config/autoload/local.php
 
 # Binary gettext files
 *.mo
@@ -18,3 +18,10 @@ temp/
 # Legacy ZF1
 demos/
 extras/documentation
+/nbproject/private/
+
+# Cause macs are weird
+.DS_STORE
+
+# Client-side config
+config.json
