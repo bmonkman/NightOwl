@@ -25,3 +25,6 @@ extras/documentation
 
 # Client-side config
 config.json
+
+.vagrant
+.idea
