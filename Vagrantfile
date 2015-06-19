@@ -24,9 +24,20 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 80, host: 8888
 
+  config.vm.hostname = "nightowl"
+
+  config.ssh.username = "vagrant"
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.33.100"
+
+  config.vm.network :forwarded_port, guest: 8300, host: 8300, protocol: 'tcp' # consul server
+  config.vm.network :forwarded_port, guest: 8301, host: 8301, protocol: 'tcp' # consul lan
+  config.vm.network :forwarded_port, guest: 8301, host: 8301, protocol: 'udp'
+  config.vm.network :forwarded_port, guest: 8302, host: 8302, protocol: 'tcp' # consul wan
+  config.vm.network :forwarded_port, guest: 8302, host: 8302, protocol: 'udp'
+
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -37,7 +48,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/ebs1/www"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -54,11 +65,9 @@ Vagrant.configure(2) do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
-  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
-  # such as FTP and Heroku are also available. See the documentation at
-  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
-  # config.push.define "atlas" do |push|
-  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
-  # end
-
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "config/ansible/vagrant.yml"
+    ansible.inventory_path = "config/ansible/inventories/vagrant"
+    ansible.limit = "*"
+  end
 end
